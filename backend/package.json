@@ -1,5 +1,5 @@
 {
-    "name": "ai-assessment-pipeline-backend",
+    "name": "ai-assessment-creator-backend",
     "version": "1.0.0",
     "main": "dist/server.js",
     "scripts": {

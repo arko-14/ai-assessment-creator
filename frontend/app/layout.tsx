@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import Script from "next/script";
 
 export const metadata: Metadata = {
-    title: "VedaAI Assessment Creator",
+    title: "AI Assessment Creator",
     description: "AI Assessment Creator for teachers",
 };
 

@@ -1,4 +1,4 @@
-# Dockerfile for VedaAI Backend
+# Dockerfile for AI Assessment Creator Backend
 FROM node:18-alpine AS builder
 
 WORKDIR /app

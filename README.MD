@@ -1,12 +1,10 @@
-# VedaAI - AI Assessment Creator (Hiring Assignment)
+# AI Assessment Creator (Hiring Assignment)
 
-VedaAI is a premium, full-stack monorepo application designed to generate professional, structured assessment papers from any source content (Text or PDF) using a robust 4-tier LLM failover chain.
-
-![VedaAI Banner](https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&q=80&w=1000)
+A premium, full-stack monorepo application designed to generate professional, structured assessment papers from any source content (Text or PDF) using a robust 4-tier LLM failover chain.
 
 ## ✨ Premium Features
 
-- **🎨 High-Fidelity Figma UI**: A modern, card-based interface with pixel-perfect implementation of the VedaAI hiring design.
+- **🎨 High-Fidelity UI**: A modern, card-based interface with pixel-perfect implementation of the required design.
 - **🛡️ 4-Tier LLM Failover**: Automatic fallback system (Llama 8B → Llama 70B → Mixtral → Gemma) ensuring 100% generation reliability.
 - **📄 Instant PDF Extraction**: Client-side PDF processing for immediate context extraction from study materials.
 - **⚡ Real-time Pipeline**: Live status tracking (Queued → Processing → Completed) powered by Socket.IO and Redis.
@@ -25,7 +23,7 @@ This project is organized as a unified monorepo for easier deployment and mainte
 
 ---
 
-## 🛠️ Architecture
+## 🏗️ Architecture
 
 ```mermaid
 graph TD
@@ -67,7 +65,7 @@ docker-compose up --build -d
 ---
 
 ## 🧪 Testing the Pipeline
-A comprehensive [Testing Guide](./brain/testing_guide.md) is provided in the artifacts directory, including:
+A comprehensive [Testing Guide](./brain/testing_guide.md) is available to verify:
 - **Low-Load Test Cases**: To avoid rate limits during verification.
 - **File Upload Checks**: Automated PDF text extraction verification.
 - **Failover Verification**: How to test the multi-model fallback system.
