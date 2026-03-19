@@ -1,4 +1,4 @@
-# AI Assessment Creator (Hiring Assignment)
+# AI Assessment Creator
 
 A premium, full-stack monorepo application designed to generate professional, structured assessment papers from any source content (Text or PDF) using a robust 4-tier LLM failover chain.
 
