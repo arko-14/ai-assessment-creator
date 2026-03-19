@@ -173,25 +173,38 @@ export function AssignmentForm() {
                     </div>
 
                     <div className="space-y-4">
-                        <div className="grid grid-cols-3 gap-4 text-xs font-bold text-gray-400 uppercase tracking-wider px-2">
+                        <div className="hidden md:grid grid-cols-3 gap-4 text-xs font-bold text-gray-400 uppercase tracking-wider px-2">
                             <div className="col-span-1">Question Type</div>
                             <div className="text-center">No. of Questions</div>
                             <div className="text-center">Marks</div>
                         </div>
 
                         {Object.entries(store.configs).map(([type, config]) => (
-                            <div key={type} className="grid grid-cols-3 items-center gap-4 py-2 border-b border-gray-50">
-                                <div className="flex items-center gap-3">
-                                    <button onClick={() => store.toggleType(type)} className="text-gray-300 hover:text-red-500 transition-colors">
-                                        <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                                        </svg>
-                                    </button>
-                                    <span className="font-bold text-gray-900">{type}</span>
+                            <div key={type} className="flex flex-col md:grid md:grid-cols-3 items-center gap-4 py-4 md:py-2 border-b border-gray-50">
+                                <div className="flex items-center justify-between w-full md:w-auto gap-3">
+                                    <div className="flex items-center gap-3">
+                                        <button onClick={() => store.toggleType(type)} className="text-gray-300 hover:text-red-500 transition-colors">
+                                            <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                                            </svg>
+                                        </button>
+                                        <span className="font-bold text-gray-900 text-lg md:text-base">{type}</span>
+                                    </div>
+                                    <div className="md:hidden flex gap-4">
+                                        <div className="text-center">
+                                            <p className="text-[10px] font-bold text-gray-400 uppercase">Qty</p>
+                                            <p className="font-bold">{config.count}</p>
+                                        </div>
+                                        <div className="text-center">
+                                            <p className="text-[10px] font-bold text-gray-400 uppercase">Marks</p>
+                                            <p className="font-bold">{config.marks}</p>
+                                        </div>
+                                    </div>
                                 </div>
 
-                                <div className="flex justify-center">
-                                    <div className="figma-input-pill">
+                                <div className="flex justify-between md:justify-center w-full md:w-auto items-center">
+                                    <span className="md:hidden text-xs font-bold text-gray-400 uppercase">Questions</span>
+                                    <div className="figma-input-pill scale-90 md:scale-100">
                                         <button type="button" onClick={() => store.updateConfig(type, 'count', config.count - 1)} className="figma-control-btn">
                                             -
                                         </button>
@@ -202,8 +215,9 @@ export function AssignmentForm() {
                                     </div>
                                 </div>
 
-                                <div className="flex justify-center">
-                                    <div className="figma-input-pill">
+                                <div className="flex justify-between md:justify-center w-full md:w-auto items-center">
+                                    <span className="md:hidden text-xs font-bold text-gray-400 uppercase">Marks each</span>
+                                    <div className="figma-input-pill scale-90 md:scale-100">
                                         <button type="button" onClick={() => store.updateConfig(type, 'marks', config.marks - 1)} className="figma-control-btn">
                                             -
                                         </button>
@@ -231,25 +245,25 @@ export function AssignmentForm() {
             </div>
 
             {/* Sticky Footer Summary */}
-            <div className="fixed bottom-8 left-1/2 -translate-x-1/2 w-full max-w-3xl px-6">
-                <div className="bg-white rounded-full border shadow-2xl p-4 flex items-center justify-between">
-                    <div className="flex gap-8 pl-6">
+            <div className="fixed bottom-4 md:bottom-8 left-1/2 -translate-x-1/2 w-full max-w-3xl px-4 md:px-6">
+                <div className="bg-white rounded-3xl md:rounded-full border shadow-2xl p-3 md:p-4 flex flex-col md:flex-row items-center justify-between gap-4 md:gap-0">
+                    <div className="flex gap-8 md:pl-6">
                         <div>
-                            <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Total Questions</p>
-                            <p className="text-xl font-black text-gray-900">{store.getTotalQuestions()}</p>
+                            <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Questions</p>
+                            <p className="text-lg md:text-xl font-black text-gray-900">{store.getTotalQuestions()}</p>
                         </div>
                         <div>
                             <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Total Marks</p>
-                            <p className="text-xl font-black text-gray-900">{store.getTotalMarks()}</p>
+                            <p className="text-lg md:text-xl font-black text-gray-900">{store.getTotalMarks()}</p>
                         </div>
                     </div>
 
-                    <div className="flex items-center gap-4 pr-2">
-                        {error && <p className="text-xs font-bold text-red-500 max-w-[150px] line-clamp-1">{error}</p>}
+                    <div className="flex items-center gap-4 w-full md:w-auto pr-0 md:pr-2">
+                        {error && <p className="hidden md:block text-xs font-bold text-red-500 max-w-[150px] line-clamp-1">{error}</p>}
                         <button
                             onClick={handleSubmit}
                             disabled={loading}
-                            className="figma-pill-button flex items-center gap-2 pr-4 h-[52px]"
+                            className="figma-pill-button flex items-center justify-center gap-2 w-full md:w-auto md:pr-4 h-[48px] md:h-[52px]"
                         >
                             {loading ? "Generating..." : "Generate Assessment"}
                             {!loading && (

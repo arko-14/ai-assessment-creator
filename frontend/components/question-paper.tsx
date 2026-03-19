@@ -16,29 +16,29 @@ export function QuestionPaper({ assignment }: { assignment: Assignment }) {
     return (
         <div className="mx-auto max-w-4xl bg-white p-12 figma-card !rounded-none shadow-none border-none print:p-0">
             {/* Academic Header */}
-            <div className="flex items-center gap-6 border-b-2 border-gray-900 pb-8 mb-8">
+            <div className="flex flex-col md:flex-row items-center gap-6 border-b-2 border-gray-900 pb-8 mb-8 text-center md:text-left">
                 <div className="h-20 w-20 rounded-full border-2 border-gray-900 flex items-center justify-center bg-gray-50 flex-shrink-0">
                     <div className="h-10 w-10 border-2 border-gray-900 rotate-45 flex items-center justify-center">
                         <div className="h-4 w-4 bg-gray-900 -rotate-45"></div>
                     </div>
                 </div>
                 <div className="flex-1">
-                    <h1 className="text-3xl font-black text-gray-900 uppercase tracking-tight">Delhi Public School</h1>
-                    <p className="text-lg font-bold text-gray-700">Bokaro Steel City, Jharkhand</p>
+                    <h1 className="text-2xl md:text-3xl font-black text-gray-900 uppercase tracking-tight">Delhi Public School</h1>
+                    <p className="text-base md:text-lg font-bold text-gray-700">Bokaro Steel City, Jharkhand</p>
                 </div>
-                <div className="text-right">
+                <div className="text-center md:text-right mt-4 md:mt-0">
                     <p className="text-sm font-black uppercase">Term Assessment</p>
                     <p className="text-xs font-bold text-gray-500">{formatDate(assignment.dueDate)}</p>
                 </div>
             </div>
 
             {/* Student Info Section */}
-            <div className="grid grid-cols-2 gap-y-6 mb-12 text-sm font-bold uppercase tracking-wider">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6 mb-12 text-sm font-bold uppercase tracking-wider">
                 <div className="flex items-end gap-2">
                     <span className="flex-shrink-0">Student Name:</span>
                     <div className="flex-1 border-b border-gray-400 h-5"></div>
                 </div>
-                <div className="flex items-end gap-2 pl-4">
+                <div className="flex items-end gap-2 pr-0 md:pl-4">
                     <span className="flex-shrink-0">Subject:</span>
                     <div className="flex-1 font-black text-gray-900">General Science</div>
                 </div>
@@ -46,7 +46,7 @@ export function QuestionPaper({ assignment }: { assignment: Assignment }) {
                     <span className="flex-shrink-0">Roll Number:</span>
                     <div className="flex-1 border-b border-gray-400 h-5"></div>
                 </div>
-                <div className="flex items-end gap-2 pl-4">
+                <div className="flex items-end gap-2 pr-0 md:pl-4">
                     <span className="flex-shrink-0">Class / Section:</span>
                     <div className="flex-1 border-b border-gray-400 h-5"></div>
                 </div>

@@ -1,13 +1,20 @@
-import "./globals.css";
 import type { Metadata } from "next";
+import { Inter } from "next/font/google";
+import "./globals.css";
 import Script from "next/script";
+
+const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
     title: "AI Assessment Creator",
-    description: "AI Assessment Creator for teachers",
+    description: "Generate professional assessment papers using AI",
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({
+    children,
+}: Readonly<{
+    children: React.ReactNode;
+}>) {
     return (
         <html lang="en">
             <head>
@@ -16,7 +23,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                     strategy="beforeInteractive"
                 />
             </head>
-            <body className="bg-gray-50 text-gray-900">{children}</body>
+            <body className={inter.className}>{children}</body>
         </html>
     );
 }
