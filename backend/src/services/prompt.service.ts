@@ -30,12 +30,13 @@ SUMMARY CONSTRAINTS:
 
 OUTPUT RULES:
 1. Group questions into logical sections (e.g., Section A for MCQs, Section B for Short Answer).
-2. Each question MUST have:
+2. For "Fill in the blanks", you MUST replace a core fact or keyword in the sentence with "________" (at least 8 underscores).
+3. Each question MUST have:
    - "text": The question content.
    - "difficulty": "easy", "medium", or "hard".
    - "marks": The EXACT marks specified for that type in the requirements above.
-3. Return ONLY valid JSON in the structure below.
-4. No markdown fences, no conversational text.
+4. Return ONLY valid JSON in the structure below.
+5. No markdown fences, no conversational text.
 
 JSON STRUCTURE:
 {

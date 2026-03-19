@@ -1,3 +1,4 @@
+console.log("[Worker] SCRIPT LOADED - Starting Service...");
 import { Worker } from "bullmq";
 import { redisConnection } from "../config/redis";
 import { Assignment } from "../models/Assignment";
