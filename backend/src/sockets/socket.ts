@@ -9,11 +9,13 @@ let io: Server;
 let emitter: Emitter;
 
 export async function initSocket(server: HttpServer) {
+    console.log("[Socket] Initializing with Redis...");
     const pubClient = createClient({ url: env.redisUrl });
     const subClient = pubClient.duplicate();
 
-    pubClient.on("error", (err) => console.error("[Redis Pub] Error:", err));
-    subClient.on("error", (err) => console.error("[Redis Sub] Error:", err));
+    // Add error handlers BEFORE connecting
+    pubClient.on("error", (err) => console.error("[Redis Pub Client Error]:", err));
+    subClient.on("error", (err) => console.error("[Redis Sub Client Error]:", err));
 
     await Promise.all([pubClient.connect(), subClient.connect()]);
 
@@ -24,10 +26,12 @@ export async function initSocket(server: HttpServer) {
         },
     });
 
+    console.log("[Socket] Setting up Redis adapter...");
     io.adapter(createAdapter(pubClient, subClient));
 
     io.on("connection", (socket) => {
         socket.on("assignment:join", (assignmentId: string) => {
+            console.log(`[Socket] Client joining room: ${assignmentId}`);
             socket.join(assignmentId);
         });
     });
@@ -37,8 +41,11 @@ export async function initSocket(server: HttpServer) {
 
 export async function getEmitter() {
     if (emitter) return emitter;
+    console.log("[Socket] Creating Redis Emitter...");
     const redisClient = createClient({ url: env.redisUrl });
-    redisClient.on("error", (err) => console.error("[Redis Emitter] Error:", err));
+
+    redisClient.on("error", (err) => console.error("[Redis Emitter Client Error]:", err));
+
     await redisClient.connect();
     emitter = new Emitter(redisClient);
     return emitter;
@@ -48,13 +55,15 @@ export async function emitAssignmentUpdate(
     assignmentId: string,
     payload: Record<string, unknown>
 ) {
-    // If we have the full IO instance (API server process)
-    if (io) {
-        io.to(assignmentId).emit("assignment:update", payload);
-        return;
-    }
+    try {
+        if (io) {
+            io.to(assignmentId).emit("assignment:update", payload);
+            return;
+        }
 
-    // Otherwise use the emitter (Worker process)
-    const workerEmitter = await getEmitter();
-    workerEmitter.to(assignmentId).emit("assignment:update", payload);
+        const workerEmitter = await getEmitter();
+        workerEmitter.to(assignmentId).emit("assignment:update", payload);
+    } catch (error) {
+        console.error("[Socket] Failed to emit update:", error);
+    }
 }
