@@ -12,6 +12,9 @@ export async function initSocket(server: HttpServer) {
     const pubClient = createClient({ url: env.redisUrl });
     const subClient = pubClient.duplicate();
 
+    pubClient.on("error", (err) => console.error("[Redis Pub] Error:", err));
+    subClient.on("error", (err) => console.error("[Redis Sub] Error:", err));
+
     await Promise.all([pubClient.connect(), subClient.connect()]);
 
     io = new Server(server, {
@@ -35,6 +38,7 @@ export async function initSocket(server: HttpServer) {
 export async function getEmitter() {
     if (emitter) return emitter;
     const redisClient = createClient({ url: env.redisUrl });
+    redisClient.on("error", (err) => console.error("[Redis Emitter] Error:", err));
     await redisClient.connect();
     emitter = new Emitter(redisClient);
     return emitter;
