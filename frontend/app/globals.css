@@ -1,0 +1,59 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+    --background: #F9FAFB;
+    --foreground: #111827;
+    --card: #FFFFFF;
+    --primary: #111827;
+    --primary-foreground: #FFFFFF;
+    --border: #E5E7EB;
+    --muted: #6B7280;
+    --muted-foreground: #9CA3AF;
+    --accent-easy: #059669;
+    --accent-moderate: #2563EB;
+    --accent-challenging: #DC2626;
+}
+
+@layer base {
+    body {
+        @apply antialiased bg-[var(--background)] text-[var(--foreground)] font-sans;
+    }
+}
+
+@layer components {
+    .figma-card {
+        @apply bg-white rounded-[32px] border border-[var(--border)] shadow-sm p-8;
+    }
+
+    .figma-pill-button {
+        @apply rounded-full bg-[var(--primary)] text-white px-6 py-2.5 text-sm font-semibold transition-opacity hover:opacity-90 disabled:opacity-50;
+    }
+
+    .figma-input-pill {
+        @apply flex items-center bg-[#F3F4F6] rounded-full px-2 py-1 gap-3;
+    }
+
+    .figma-control-btn {
+        @apply w-8 h-8 flex items-center justify-center rounded-full bg-white text-[var(--primary)] shadow-sm hover:bg-gray-50 transition-colors;
+    }
+}
+
+@media print {
+    .no-print {
+        display: none !important;
+    }
+
+    body {
+        background: white !important;
+        padding: 0 !important;
+    }
+
+    .figma-card {
+        border: none !important;
+        box-shadow: none !important;
+        padding: 0 !important;
+        border-radius: 0 !important;
+    }
+}
