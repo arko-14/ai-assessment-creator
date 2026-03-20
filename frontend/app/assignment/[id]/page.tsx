@@ -84,26 +84,26 @@ export default function AssignmentPage() {
 
     return (
         <main className="min-h-screen p-6 md:p-10 bg-gray-50">
-            <div className="mx-auto mb-8 flex max-w-4xl items-center justify-between no-print">
+            <div className="mx-auto mb-6 md:mb-8 flex flex-col md:flex-row md:items-center justify-between gap-4 no-print">
                 <div>
-                    <h1 className="text-3xl font-bold tracking-tight">Assessment Overview</h1>
-                    <p className="mt-2 text-sm text-gray-500">
+                    <h1 className="text-2xl md:text-3xl font-bold tracking-tight">Assessment Overview</h1>
+                    <p className="mt-1 md:mt-2 text-sm text-gray-500">
                         View and manage your generated question paper.
                     </p>
                 </div>
-                <div className="flex items-center gap-4 no-print">
+                <div className="flex items-center gap-3 no-print max-w-full overflow-x-auto pb-2 md:pb-0 hide-scrollbar">
                     <button
                         onClick={() => window.print()}
-                        className="rounded-xl border border-gray-200 bg-white px-5 py-2.5 text-sm font-semibold shadow-sm hover:bg-gray-50 transition-colors flex items-center gap-2"
+                        className="rounded-xl border border-gray-200 bg-white px-4 md:px-5 py-2 md:py-2.5 text-xs md:text-sm font-semibold shadow-sm hover:bg-gray-50 transition-colors flex items-center gap-2 whitespace-nowrap"
                     >
-                        <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <svg className="w-4 h-4 md:w-5 md:h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a2 2 0 002 2h12a2 2 0 002-2v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
                         </svg>
                         Download PDF
                     </button>
                     <button
                         onClick={onRegenerate}
-                        className="rounded-xl border border-gray-200 bg-white px-5 py-2.5 text-sm font-semibold shadow-sm hover:bg-gray-50 transition-colors"
+                        className="rounded-xl border border-gray-200 bg-white px-4 md:px-5 py-2 md:py-2.5 text-xs md:text-sm font-semibold shadow-sm hover:bg-gray-50 transition-colors whitespace-nowrap"
                     >
                         Regenerate
                     </button>
